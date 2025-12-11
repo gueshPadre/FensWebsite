@@ -20,6 +20,31 @@
     <h2>Welcome to F.E.N.S.</h2>
     <p>F.E.N.S. was created off of a non profit called Flooding Environment of Nurturing Support where we noticed that participants constantly enjoyed and were interested in knowing how safe their neighbourhood was. From that we built this application that allows you to know what neighbourhood is more or less dangerous when you travel, allowing you to monitor where you walk and what are the potential dangers in the areas you frequent. 
     On top of the knowing the statistics  </p>
+
+    <form id="signup" name="signup" method="POST" data-netlify="true">
+  <input type="email" name="email" placeholder="Enter your email" required />
+  <button type="submit">Keep me updated!</button>
+</form>
+
+<p id="msg" style="display:none;">Thanks! You're on the list 🙌</p>
+
+<script>
+document.getElementById("signup").addEventListener("submit", function(e) {
+  e.preventDefault();
+  const form = e.target;
+  const data = new FormData(form);
+
+  fetch("/", {
+    method: "POST",
+    body: data
+  }).then(() => {
+    document.getElementById("msg").style.display = "block";
+    form.reset();
+  }).catch((error) => alert("Something went wrong!"));
+});
+</script>
+
+
 </section>
 
 <footer>
