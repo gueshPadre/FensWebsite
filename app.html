@@ -43,6 +43,18 @@
   messagingSenderId: "2995946455",
   appId: "1:2995946455:web:fb4ae8283463c4fadc8192",
   measurementId: "G-DZ471WS12V"
+
+  // 🔥 JS function Unity can call
+  window.saveDataFromUnity = function (collection, dataJson) {
+    const data = JSON.parse(dataJson);
+
+    db.collection(collection).add(data)
+      .then(() => {
+        console.log("Firestore write success");
+      })
+      .catch(err => {
+        console.error("Firestore write error:", err);
+      });
 }; 
 
 // Initialize Firebase
