@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "2995946455",
+    "project_id": "fens-map-van",
+    "storage_bucket": "fens-map-van.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:2995946455:android:9017f62e13c6dbeedc8192",
+        "android_client_info": {
+          "package_name": "com.FENS.SafeMap"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaEzW0-PHrRNcNhRcJp-TnnJFkz-I2s60"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
