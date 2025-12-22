@@ -13,8 +13,6 @@
     <h1>F.E.N.S. (Flying Environment Of Nurturing Support)</h1>
     <nav>
         <a href="index.html">Home</a>
-        <a href="about.html">About Us</a>
-        <a href="app.html">App</a>
     </nav>
 </header>
 
@@ -22,6 +20,92 @@
     <h2>Welcome to the F.E.N.S. Alpha app!</h2>
     <p>Thank you for being part of the Alpha Version. This is a proof of concept and will be improved and worked on furthermore as we get interest of people like you! So if you like the idea or have any idea on how you'd like the direction to go, please let us know to help guide the development of this app! 
     Travel points are meant to be later-on transferred to travel benefits such as Expedia, Air Canada, Westjet, etc. But we need your help to make this a reality! Let us know what you'd like to see from the app, and share it with your friends to gain as many travel points as possible!</p>
+
+
+<div class="signup-row">
+  <!-- LEFT -->
+  <div class="signup-column">
+    <input type="email" placeholder="Enter your email" />
+    <button type="submit" class = "leftButton">Add me to the list for free!</button>
+    <img src="DownArrow.png" alt="LeftDownArrow" style="max-width: 50px; height: 75px;">
+  </div>
+
+  <!-- RIGHT -->
+  <div class="signup-column">
+    <input type="email" placeholder="Enter who referred you" />
+    <button type="submit" class = "rightButton">Get me travel points!</button>
+    <img src="DownArrow.png" alt="RightDownArrow" style="max-width: 50px; height: 75px;">
+  </div>
+</div>
+
+
+<p id="msg" style="display:none;">Thanks! You're on the list 🙌</p>
+
+<style>
+.signup-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.signup-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: -30px;
+}
+
+.signup-column input {
+  padding: 0px 14px;
+  font-size: 16px;
+  margin-bottom: 10px;
+  margin-left: -30px;
+  width: 150px;
+}
+
+.signup-column img {
+  width: 50px;
+  height: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+</style>
+
+
+
+<!-- <p>
+    <form id="signup" name="signup" method="POST" data-netlify="true">
+  <input type="email" name="email" placeholder="Enter your email" required />
+  <button type="submit">Add me to the list for free!</button>
+</form>
+</p>
+
+<p id="msg" style="display:none;">Thanks! You're on the list 🙌</p>
+
+<p><div style="text-align: center; margin-bottom: 20px;">
+    <img src="DownArrow.png" alt="LeftDownArrow" style="max-width: 100px; height: 100px;">
+</div></p>
+ -->
+
+<script>
+document.getElementById("signup").addEventListener("submit", function(e) {
+  e.preventDefault();
+  const form = e.target;
+  const data = new FormData(form);
+
+  fetch("/", {
+    method: "POST",
+    body: data
+  }).then(() => {
+    document.getElementById("msg").style.display = "block";
+    form.reset();
+  }).catch((error) => alert("Something went wrong!"));
+});
+</script>
+
 
     <iframe src="https://fenssafety.netlify.app"
             style="width:720px; height:1280px; border:none;"></iframe>
@@ -64,118 +148,6 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
 </script>
-
-<script>
-  const firebaseConfig = {
-    apiKey: "AIzaSyAZHn8Lga62oU0tF-MVKDlIwfmrE_GsyfU",
-    authDomain: "fens-map-van.firebaseapp.com",
-    projectId: "fens-map-van"
-  };
-
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore();
-
-  // 🔴 THIS LINE IS THE KEY
-  globalThis.fetchVancouverData_JS = async function () {
-    try{
-      const snapshot = await db.collection("Vancouver").get();
-      
-
-      let payload = {
-      articles: "",
-      firstUrl: "",
-      secondUrl: "",
-      thirdUrl: "",
-      fourthUrl:""
-      };
-
-      snapshot.forEach(doc => {
-        const d = doc.data();
-
-        payload.articles = 
-      `${d.First}\n\n` + 
-      `${d.Second}\n\n` + 
-      `${d.Third}\n\n` + 
-      `${d.Fourth}`;
-
-      payload.firstUrl = d.refFirst;
-      payload.secondUrl = d.refSecond;
-      payload.thirdUrl = d.refThird;
-      payload.fourthUrl = d.refFourth;
-      
-      // payload = {
-      //   articles: 
-      //   `${d.First}\n\n` + 
-      //   `${d.Second}\n\n` + 
-      //   `${d.Third}\n\n` + 
-      //   `${d.Fourth}`,
-      //   firstUrl: d.refFirst,
-      //   secondUrl: d.refSecond 
-      
-      //console.log(`Read data from firebase: ${JSON.stringify(payload)}`);
-
-      //globalThis.sendDataToUnity(JSON.stringify(payload));
-      //globalThis.sendData(JSON.stringify(payload));
-    });
-
-         // Send JSON back to Unity
-      //const fullText = JSON.stringify(payload);
-      const fullText = `${payload.articles} + ${payload.firstUrl} + ${payload.secondUrl}`;
-
-      globalThis.unityInstance.SendMessage(
-        "articleNews",
-        "ReceiveVancouverData",
-        //JSON.stringify(payload.articles) | JSON.stringify(payload.firstUrl) | JSON.stringify(payload.secondUrl)
-        JSON.stringify(fullText)
-      );
-
-    } catch (e) {
-      console.error("Firestore read error:", e);
-    }
-
-    // db.collection("emails").add({
-    //   email: email,
-    //   createdAt: firebase.firestore.FieldValue.serverTimestamp()
-    // })
-    // .then(() => console.log("Saved:", email))
-    // .catch(e => console.error("Firestore error:", e));
-  };
-</script>
-
-    <script src="Build/Final.loader.js"></script>
-    <script>
-      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-        // Mobile device style: fill the whole browser client area with the game canvas:
-        var meta = document.createElement('meta');
-        meta.name = 'viewport';
-        meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
-        document.getElementsByTagName('head')[0].appendChild(meta);
-
-        var canvas = document.querySelector("#unity-canvas");
-        canvas.style.width = "100%";
-        canvas.style.height = "100%";
-        canvas.style.position = "fixed";
-
-        document.body.style.textAlign = "left";
-      }
-
-      createUnityInstance(document.querySelector("#unity-canvas"), {
-        dataUrl: "Build/Final.data",
-        frameworkUrl: "Build/Final.framework.js",
-        codeUrl: "Build/Final.wasm",
-        streamingAssetsUrl: "StreamingAssets",
-        companyName: "FENS",
-        productName: "SafeMap",
-        productVersion: "1.0",
-        // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
-        // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
-      }).then((instance) => {
-        globalThis.unityInstance = instance;
-        console.log("Unity Instance ready");
-      }).catch((err) => {
-        console.error("Unity failed to load", err);
-      });
-    </script>
 
 </body>
 </html>

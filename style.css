@@ -38,3 +38,46 @@ footer {
     border-top: 1px solid #ddd;
     font-size: 14px;
 }
+
+@keyframes bounceDown {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+}
+
+.signup-column img {
+  width: 50px;
+  height: auto;
+  margin-top: 12px;
+  animation: bounceDown 1.5s infinite ease-in-out;
+}
+.signup-column:nth-child(2) img {
+  animation-delay: 0.3s;
+}
+50% {
+  transform: translateY(16px);
+}
+.leftButton{
+    margin-left: -50px;
+    cursor: pointer;
+}
+.rightButton{
+    margin-right: 50px;
+    cursor: pointer;
+}
+input::placeholder {
+  font-size: 12px;
+}
+@media (max-width: 600px) {
+  .email-input::placeholder {
+    font-size: 12px;
+  }
+}
+
+
+
+
+

@@ -29,11 +29,14 @@
     <p>We're partnering with hotels and travel companies to give your guests a better experience! To have access to the alpha and stay updated, join the list and receive early adopters' rewards now!</p>
 
     <form id="signup" name="signup" method="POST" data-netlify="true">
+        <input type="hidden" name="form-name" value="signup"/>
   <input type="email" name="email" placeholder="Enter your email" required />
   <button type="submit">Keep me updated!</button>
 </form>
 
-<p id="msg" style="display:none;">Thanks! You're on the list 🙌</p>
+<p id="msg" style="display:none;">Thanks! You're on the list 🙌 Now Enjoy the app!</p>
+
+<!-- <button id="appLink" type ="showApp" style="display:none;">Let me see the app</button> -->
 
 <script>
 document.getElementById("signup").addEventListener("submit", function(e) {
@@ -47,8 +50,13 @@ document.getElementById("signup").addEventListener("submit", function(e) {
   }).then(() => {
     document.getElementById("msg").style.display = "block";
     form.reset();
-  }).catch((error) => alert("Something went wrong!"));
+
+    setTimeout(() => {
+    window.location.href = "app.html";
+    }, 1200);
+  }).catch((error) => alert("Something went wrong!", error));
 });
+
 </script>
 
 
