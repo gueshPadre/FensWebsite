@@ -76,6 +76,18 @@ input::placeholder {
     font-size: 12px;
   }
 }
+.app-container {
+    width: 100%;
+    max-width: 720px;
+    aspect-ratio: 9 / 16;
+    margin: 40px auto;
+    touch-action: manipulation; /* allow pinch zoom */
+}
+iframe,
+canvas {
+    touch-action: auto !important;
+}
+    
 
 
 
