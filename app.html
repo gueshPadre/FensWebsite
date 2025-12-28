@@ -23,13 +23,13 @@
   <!-- LEFT -->
   <div class="signup-column">
     <input type="email" placeholder="Enter your email" />
-    <button type="submit" class = "leftButton">Add me to the list for free!</button>
+    <button type="submit" class = "leftButton">Add me to the list!</button>
     <img src="DownArrow.png" alt="LeftDownArrow" style="max-width: 50px; height: 75px;">
   </div>
 
   <!-- RIGHT -->
   <div class="signup-column">
-    <input type="email" placeholder="Enter who referred you" />
+    <input type="email" placeholder="Who referred you?" />
     <button type="submit" class = "rightButton">Get me travel points!</button>
     <img src="DownArrow.png" alt="RightDownArrow" style="max-width: 50px; height: 75px;">
   </div>
@@ -51,15 +51,19 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-left: -30px;
 }
 
 .signup-column input {
-  padding: 0px 14px;
+  padding: 0px 5px;
   font-size: 16px;
   margin-bottom: 10px;
-  margin-left: -30px;
-  width: 150px;
+  width: 100px;
+}
+
+.signup-column button {
+    padding: 5px 0px;
+    width: 120px;
+    font-size: 12px;
 }
 
 .signup-column img {
