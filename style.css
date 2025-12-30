@@ -100,7 +100,7 @@ footer {
   transform: translateY(16px);
 }
 input::placeholder {
-  font-size: 12px;
+  font-size: 10px;
 }
 /* MOBILE */
 @media (max-width: 600px) {
