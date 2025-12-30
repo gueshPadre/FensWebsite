@@ -23,6 +23,7 @@
   <!-- LEFT -->
   <div class="signup-column">
     <input id="emailInput" type="email" placeholder="Enter your email" />
+    <div id ="emailError" class="error-msg"></div>
     <button type="button" class = "leftButton">Add me to the list!</button>
     <img src="DownArrow.png" alt="LeftDownArrow" style="max-width: 50px; height: 75px;">
   </div>
@@ -30,13 +31,15 @@
   <!-- RIGHT -->
   <div class="signup-column">
     <input id="referralInput" type="text" placeholder="Who referred you?" />
+    <div id ="referralError" class="error-msg"></div>
     <button type="button" class = "rightButton">Get me travel points!</button>
     <img src="DownArrow.png" alt="RightDownArrow" style="max-width: 50px; height: 75px;">
   </div>
 </div>
 
 
-<p id="errorMsg" style="color: red; display: none;"></p>
+<p id="successReferralMsg" style="display:none;">Thanks and congratulations!! You just gained more travel points!!🙌</p>
+<p id="successMsg" style="display:none;">Thanks! You'll hear from us soon!🙌</p>
 
 <style>
 .signup-row {
@@ -76,68 +79,100 @@
 </style>
 
 <script>
+
+function isValidEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function showError(input, msgEl, message) {
+  msgEl.textContent = message;
+  msgEl.style.display = "block";
+
+  input.classList.add("input-error", "shake");
+
+  setTimeout(() => {
+    input.classList.remove("shake");
+  }, 400);
+}
+
+function clearError(input, msgEl) {
+  msgEl.style.display = "none";
+  input.classList.remove("input-error");
+}
+
 const emailInput = document.getElementById("emailInput");
 const referralInput = document.getElementById("referralInput");
 const rightButton = document.querySelector(".rightButton");
-const errorMsg = document.getElementById("errorMsg");
-
+const leftButton = document.querySelector(".leftButton");
+ 
+ // RIGHT BUTTON
 rightButton.addEventListener("click", () => {
-  errorMsg.style.display = "none";
 
-  if (!emailInput.value.trim()) {
-    errorMsg.textContent = "Your email is missing!";
-    errorMsg.style.display = "block";
-    return;
-  }
+const email = emailInput.value.trim();
+const referral = referralInput.value.trim();
 
-  if (!referralInput.value.trim()) {
-    errorMsg.textContent = "You're missing a Referral email!";
-    errorMsg.style.display = "block";
-    return;
-  }
-</script>
-<script>
-document.querySelector(".leftButton").addEventListener("click", () => {
-  const email = emailInput.value.trim();
+    clearError(emailInput, emailError);
+    clearError(referralInput, referralError);
 
   if (!email) {
-    alert("Email is missing");
+    showError(emailInput, emailError, "Your email is missing!");
     return;
   }
 
-  submitNetlifyForm("signup-email", { email })
-    .then(() => {
-      console.log("Email saved to Netlify (signup-email)");
-    })
-    .catch(() => alert("Something went wrong"));
-});
-</script>
-<script>
-document.querySelector(".rightButton").addEventListener("click", () => {
-  const email = emailInput.value.trim();
-  const referral = referralInput.value.trim();
-
-  if (!email) {
-    alert("Email is missing");
-    return;
+  if(!isValidEmail(email)) {
+    showError(emailInput, emailError, "Email inputted is not valid");
   }
 
   if (!referral) {
-    alert("Referral is missing");
+    showError(referralInput, referralError, "You're missing a referral email!");
     return;
-  }
+    }
 
-  submitNetlifyForm("signup-referral", {
+  if(!isValidEmail(referral)){
+    showError(referralInput,referralError, "Referral email is not valid");
+    return;
+    }
+    
+    submitNetlifyForm("signup-referral", {
     email,
     referral
   })
     .then(() => {
       console.log("Email + referral saved to Netlify (signup-referral)");
+      document.getElementById("successReferralMsg").style.display = "block";
     })
     .catch(() => alert("Something went wrong"));
-});
-</script>
+  });
 
+ // LEFT BUTTON
+
+leftButton.addEventListener("click", () => {
+
+    const email = emailInput.value.trim();
+    clearError(emailInput, emailError);
+
+  if (!email) {
+    showError(emailInput, emailError, "You need to put in your email");
+    return;
+  }
+
+  if(!isValidEmail(email)){
+    showError(emailInput, emailError, "Email is not valid!");
+    return;
+  }
+
+    submitNetlifyForm("signup-email", {
+    email
+  })
+    .then(() => {
+      document.getElementById("successMsg").style.display = "block";
+    })
+    .catch(() => alert("Something went wrong"));
+
+})
+
+
+</script>
 
 
     <div class="app-container">
