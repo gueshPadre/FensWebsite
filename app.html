@@ -174,10 +174,18 @@ leftButton.addEventListener("click", () => {
 
 
 </script>
-
+<div id="regionSelector" class="region-overlay">
+  <div class="region-box">
+    <h2>Choose your region</h2>
+    <div class="region-buttons">
+      <button onclick="selectRegion('vancouver')">Vancouver</button>
+      <button onclick="selectRegion('victoria')">Victoria</button>
+    </div>
+  </div>
+</div>
 
     <div class="app-container">
-  <iframe src="https://fenssafety.netlify.app"></iframe>
+  <iframe src=""></iframe>
     </div>
 </section>
 
@@ -216,6 +224,23 @@ firebase.initializeApp(firebaseConfig);
 
 // Initialize Firestore
 const db = firebase.firestore();
+
+function selectRegion(region) {
+  const iframe = document.querySelector(".app-container iframe");
+
+  if (region === "vancouver") {
+    iframe.src = "https://fenssafety.netlify.app";
+  }
+
+  if (region === "victoria") {
+    iframe.src = "https://fenssafety.netlify.appVic"; // change later when ready
+  }
+
+  document.getElementById("regionSelector").style.display = "none";
+
+  loadunity(region);
+}
+
 
 </script>
 
