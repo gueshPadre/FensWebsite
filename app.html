@@ -173,6 +173,22 @@ leftButton.addEventListener("click", () => {
 })
 
 
+function selectRegion(region) {
+  const iframe = document.querySelector(".app-container iframe");
+
+  if (region === "vancouver") {
+    iframe.src = "https://fenssafety.netlify.app";
+  }
+
+  if (region === "victoria") {
+    iframe.src = "https://fensvictoria.netlify.app/";
+  }
+
+  document.getElementById("regionSelector").style.display = "none";
+
+  loadunity(region);
+}
+
 </script>
 <div id="regionSelector" class="region-overlay">
   <div class="region-box">
@@ -224,22 +240,6 @@ firebase.initializeApp(firebaseConfig);
 
 // Initialize Firestore
 const db = firebase.firestore();
-
-function selectRegion(region) {
-  const iframe = document.querySelector(".app-container iframe");
-
-  if (region === "vancouver") {
-    iframe.src = "https://fenssafety.netlify.app";
-  }
-
-  if (region === "victoria") {
-    iframe.src = "https://fenssafety.netlify.appVic"; // change later when ready
-  }
-
-  document.getElementById("regionSelector").style.display = "none";
-
-  loadunity(region);
-}
 
 
 </script>
