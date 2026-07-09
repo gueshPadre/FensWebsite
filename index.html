@@ -135,9 +135,11 @@
         <div>
           <div class="coming">Coming soon</div>
           <h2 class="headline">Get notified when we launch and have access to early premium features!</h2>
+
           <form class="notify" onsubmit="event.preventDefault(); document.getElementById('msg').textContent='Thanks! We\\'ll be in touch.'; this.reset();">
-            <input type="email" required placeholder="Enter email adress" aria-label="Email address" />
-            <button type="submit">notify me</button>
+            <input id="emailInput" type="email" required placeholder="Enter email adress" aria-label="Email address" />
+            <div id ="emailError" class="error-msg"></div>
+            <button type="button" class="notifyButton">notify me</button>
           </form>
           <div id="msg" class="msg" role="status"></div>
           <div class="coming">Features</div>
@@ -173,5 +175,40 @@
         </a>
       </footer>
     </div>
+
+<script>
+    
+const emailInput = document.getElementById("emailInput");
+
+notifyButton.addEventListener("click", () => {
+
+    const email = emailInput.value.trim();
+    clearError(emailInput, emailError);
+
+  if (!email) {
+    showError(emailInput, emailError, "You need to put in your email");
+    return;
+  }
+
+  if(!isValidEmail(email)){
+    showError(emailInput, emailError, "Email is not valid!");
+    return;
+  }
+
+    submitNetlifyForm("signup-email", {
+    email
+  })
+    .then(() => {
+      document.getElementById("successMsg").style.display = "block";
+    })
+    .catch(() => alert("Something went wrong"));
+
+})
+
+
+
+
+</script>
+
   </body>
 </html>
