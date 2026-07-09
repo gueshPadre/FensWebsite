@@ -136,11 +136,28 @@
           <div class="coming">Coming soon</div>
           <h2 class="headline">Get notified when we launch and have access to early premium features!</h2>
 
-          <form class="notify" onsubmit="event.preventDefault(); document.getElementById('msg').textContent='Thanks! We\\'ll be in touch.'; this.reset();">
+<!--           <form class="notify" onsubmit="event.preventDefault(); document.getElementById('msg').textContent='Thanks! We\\'ll be in touch.'; this.reset();">
             <input id="emailInput" type="email" required placeholder="Enter email adress" aria-label="Email address" />
             <div id ="emailError" class="error-msg"></div>
             <button type="button" class="notifyButton">notify me</button>
-          </form>
+          </form> -->
+
+            <form
+              class="notify"
+              name="signup-email"
+              method="POST"
+              data-netlify="true"
+              netlify-honeypot="bot-field">
+              <input type="hidden" name="form-name" value="signup-email" />
+              <p hidden><label>Don't fill: <input name="bot-field" /></label></p>
+            
+              <input id="emailInput" name="email" type="email" required placeholder="Enter email address" aria-label="Email address"/>
+              <button id="notifyButton" type="submit">notify me</button>
+            </form>
+            <div id="emailError" class="error-msg"></div>
+            <div id="successMsg" class="msg" style="display:none;">Thanks! We'll be in touch.</div>
+
+
           <div id="msg" class="msg" role="status"></div>
           <div class="coming">Features</div>
           <h2 class="headline">Here are some of the features you can get excited about:</h2>
@@ -178,36 +195,36 @@
 
 <script>
     
-const emailInput = document.getElementById("emailInput");
+  const form = document.querySelector('form.notify');
+  const emailInput = document.getElementById('emailInput');
+  const emailError = document.getElementById('emailError');
 
-notifyButton.addEventListener("click", () => {
+  const isValidEmail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+  const showError = (input, box, msg) => { box.textContent = msg; input.setAttribute('aria-invalid', 'true'); };
+  const clearError = (input, box) => { box.textContent = ''; input.removeAttribute('aria-invalid'); };
 
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
     const email = emailInput.value.trim();
     clearError(emailInput, emailError);
 
-  if (!email) {
-    showError(emailInput, emailError, "You need to put in your email");
-    return;
-  }
+    if (!email) return showError(emailInput, emailError, 'You need to put in your email');
+    if (!isValidEmail(email)) return showError(emailInput, emailError, 'Email is not valid!');
 
-  if(!isValidEmail(email)){
-    showError(emailInput, emailError, "Email is not valid!");
-    return;
-  }
+    const data = new URLSearchParams();
+    new FormData(form).forEach((v, k) => data.append(k, v));
 
-    submitNetlifyForm("signup-email", {
-    email
-  })
-    .then(() => {
-      document.getElementById("successMsg").style.display = "block";
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: data.toString(),
     })
-    .catch(() => alert("Something went wrong"));
-
-})
-
-
-
-
+      .then(() => {
+        document.getElementById('successMsg').style.display = 'block';
+        form.reset();
+      })
+      .catch(() => alert('Something went wrong'));
+  });
 </script>
 
   </body>
