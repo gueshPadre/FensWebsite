@@ -1,80 +1,163 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17854816945">
-</script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>F.E.N.S — Stay Safe Wherever You Go</title>
+    <meta name="description" content="F.E.N.S — Flying Environment of Nurturing Support. Coming soon. Get notified at launch and become a partner for free." />
+    <meta property="og:title" content="F.E.N.S — Stay Safe Wherever You Go" />
+    <meta property="og:description" content="Flying Environment of Nurturing Support. Coming soon." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Patrick+Hand&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --ink: #111;
+        --green: #3ab54a;
+        --paper: #ffffff;
+        --muted: #555;
+      }
+      * { box-sizing: border-box; }
+      html, body { margin: 0; padding: 0; background: var(--paper); color: var(--ink); }
+      body {
+        font-family: "Patrick Hand", "Comic Sans MS", system-ui, sans-serif;
+        font-size: 20px;
+        line-height: 1.4;
+        -webkit-font-smoothing: antialiased;
+      }
+      h1, h2, h3, .display {
+        font-family: "Caveat Brush", "Patrick Hand", cursive;
+        font-weight: 400;
+        letter-spacing: 0.5px;
+        margin: 0;
+      }
+      .wrap { max-width: 900px; margin: 0 auto; padding: 32px 24px 64px; }
+      header { display: flex; flex-direction: column; align-items: center; text-align: center; }
+      .logo { width: 100px; height: auto; }
+      .tagline { font-family: "Caveat Brush", cursive; font-size: clamp(24px, 4vw, 34px); margin: 16px 0 12px; }
+      .taglineUnder { font-family: "Patrick Hand", cursive; font-size: 18px; margin: 0px 0 16px; }
+      .frame {
+        border: 3px solid var(--ink);
+        border-radius: 6px;
+        background: #fff;
+        overflow: hidden;
+      }
+      .video {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        display: flex; align-items: center; justify-content: center;
+        font-family: "Caveat Brush", cursive;
+        font-size: clamp(40px, 8vw, 72px);
+        color: var(--ink);
+      }
+      .video video, .video iframe { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .split {
+        display: grid;
+        grid-template-columns: 1.2fr 0.9fr;
+        gap: 32px;
+        margin-top: 40px;
+        align-items: start;
+      }
+      @media (max-width: 720px) {
+        .split { grid-template-columns: 1fr; }
+      }
+      .coming { font-family: "Caveat Brush", cursive; font-size: 42px; margin-bottom: 8px; }
+      .headline { font-family: "Patrick Hand", cursive; font-size: clamp(24px, 3.5vw, 28px); line-height: 1.1; margin-bottom: 20px; }
+      form.notify {
+        display: flex;
+        align-items: center;
+        border: 2px solid var(--ink);
+        border-radius: 999px;
+        padding: 4px;
+        max-width: 420px;
+        background: #fff;
+      }
+      form.notify input {
+        flex: 1;
+        border: 0;
+        background: transparent;
+        padding: 10px 16px;
+        font: inherit;
+        outline: none;
+        color: var(--ink);
+      }
+      form.notify input::placeholder { color: #888; }
+      form.notify button {
+        border: 0;
+        background: var(--ink);
+        color: #fff;
+        font: inherit;
+        padding: 10px 22px;
+        border-radius: 999px;
+        cursor: pointer;
+        transition: transform 0.15s ease, background 0.15s ease;
+      }
+      form.notify button:hover { background: var(--green); transform: translateY(-1px); }
+      .gif {
+        aspect-ratio: 9 / 16;
+        display: flex; align-items: center; justify-content: center;
+        font-family: "Caveat Brush", cursive;
+        font-size: clamp(40px, 7vw, 64px);
+      }
+      .gif video { width: 100%; height: 100%; object-fit: contain; display: block; }
+      .partner {
+        text-align: center;
+        margin-top: 72px;
+      }
+      .partner h2 {
+        font-size: clamp(28px, 5vw, 44px);
+        line-height: 1.1;
+      }
+      .partner p { margin-top: 18px; font-size: 20px; }
+      .partner a { color: var(--ink); text-decoration: underline; }
+      footer {
+        margin-top: 56px;
+        padding-top: 24px;
+      }
+      footer a { color: var(--ink); display: inline-flex; }
+      footer svg { width: 32px; height: 32px; }
+      .msg { margin-top: 10px; font-size: 16px; color: var(--green); min-height: 20px; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <img class="logo" src="MAPPLogoOnWhiteBG.png" alt="F.E.N.S — Flying Environment of Nurturing Support" />
+        <p class="tagline">Stay Safe wherever you go!</p>
+        <p class="taglineUnder">FENS-Connect allows you to always know the safe places around you and to make sure all your friends are safe at all times. </p>
 
-  gtag('config', 'AW-17854816945');
-</script>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>F.E.N.S.</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
-</head>
-<body>
-<header>
-    <h1 style="text-align: center !important;">F.E.N.S. (Flying Environment Of Nurturing Support)</h1>
-<!--     <nav>
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="app.html">App</a>
-    </nav> -->
-</header>
-
-<section class="hero">
-    <div style="text-align: center; margin-bottom: 20px;">
-    <img src="MAPPLogoOnWhiteBG.png" alt="My Logo" style="max-width: 150px; height: auto;">
-</div>
-    <h2>Welcome to F.E.N.S.</h2>
-    <p>F.E.N.S. is a safety traveling app that allows travelers to stay safe and know things only locals would know. It also allows you to connect with locals to ask them anything you want about where you're traveling to! Also a great way to make friends! <br> </p>
-
-    <p>F.E.N.S. was created off of a non profit called Flooding Environment of Nurturing Support where we noticed that participants constantly enjoyed and were interested in knowing how safe their neighbourhood was. From that, we built an application that allows you to know what neighbourhood is more or less dangerous when you travel, allowing you to monitor where you walk and what are the potential dangers in the areas you frequent. 
-    On top of the knowing the statistics. </p>
-
-    <p>We're partnering with hotels and travel companies to give your guests a better experience! To have access to the alpha and stay updated, join the list and receive early adopters' rewards now!</p>
-
-    <form id="signup" name="signup" method="POST" data-netlify="true">
-        <input type="hidden" name="form-name" value="signup"/>
-  <input type="email" name="email" placeholder="Enter your email" required />
-  <button type="submit">Let me see the app!</button>
-</form>
-
-<p id="msg" style="display:none;">Thanks! You're on the list 🙌 Now Enjoy the app!</p>
-
-<!-- <button id="appLink" type ="showApp" style="display:none;">Let me see the app</button> -->
-
-<script>
-document.getElementById("signup").addEventListener("submit", function(e) {
-  e.preventDefault();
-  const form = e.target;
-  const data = new FormData(form);
-
-  fetch("/", {
-    method: "POST",
-    body: data
-  }).then(() => {
-    document.getElementById("msg").style.display = "block";
-    form.reset();
-
-    setTimeout(() => {
-    window.location.href = "app.html";
-    }, 1200);
-  }).catch((error) => alert("Something went wrong!", error));
-});
-
-</script>
-
-
-</section>
-
-<footer>
-    <p>© 2025 F.E.N.S.</p>
-</footer>
-</body>
+      </header>
+      <div class="frame"><div class="video"><video src="https://pub-77a749bfdbf841589f2f69ec12b87dcc.r2.dev/FENS_promo.mov" autoplay controls muted playsinline></video></div></div>
+      <section class="split">
+        <div>
+          <div class="coming">Coming soon</div>
+          <h2 class="headline">Get notified when we launch and have access to early premium features!</h2>
+          <form class="notify" onsubmit="event.preventDefault(); document.getElementById('msg').textContent='Thanks! We\\'ll be in touch.'; this.reset();">
+            <input type="email" required placeholder="Enter email adress" aria-label="Email address" />
+            <button type="submit">notify me</button>
+          </form>
+          <div id="msg" class="msg" role="status"></div>
+          <div class="coming">Features</div>
+          <h2 class="headline">Here are some of the features you can get excited about:</h2>
+        </div>
+        <div class="frame"><div class="gif"><video src="https://pub-77a749bfdbf841589f2f69ec12b87dcc.r2.dev/AppInUseV.mp4" autoplay loop muted playsinline></video></div></div>
+      </section>
+      <section class="partner">
+        <h2>Have a business and value safety?<br />Become a partner for free now!</h2>
+        <p><a href="mailto:gueshly@fens4safety.com">Email us to get started!</a></p>
+      </section>
+      <footer>
+        <a href="#" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <rect x="3" y="3" width="18" height="18" rx="5" />
+            <circle cx="12" cy="12" r="4" />
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+          </svg>
+        </a>
+      </footer>
+    </div>
+  </body>
 </html>
